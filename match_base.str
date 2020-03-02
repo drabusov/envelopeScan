@@ -1,0 +1,18 @@
+/* Quadrupole coefficients */
+
+kqd : = -2.158585731120552e-01	*	LQD	;
+kqf : = 2.165932886180960e-01	*	LQD	;
+
+K1NL_S00QD1D	:=	kqd	;		
+K1NL_S00QD1F	:=	kqf	;		
+K1NL_S00QD2F	:=	kqf	;		
+K1NL_S52QD11	:=	1.0139780	*	kqd	;			//=0.748961*kqd*L52QD/LQD	;	//
+K1NL_S52QD12	:=	1.0384325	*	kqf	;			//=0.767024*kqf*L52QD/LQD	;	//
+
+
+match,sequence=sis100ring;
+VARY,NAME=kqd,STEP=1e-8;
+VARY,NAME=kqf,STEP=1e-8;
+GLOBAL,sequence=sis100ring,Q1=18.84,Q2=18.73; 
+LMDIF,CALLS=2000,TOLERANCE=1.0E-8;
+endmatch;
